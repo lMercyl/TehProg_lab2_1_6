@@ -93,14 +93,14 @@ Worker* Keeper::operator[](int index) {
 }
 
 void Keeper::sortByLastName() {
-    Item *ptr;
-    Item *tmp = new Item;
     if (head == nullptr) {
        std::cout << "Keeper is empty" << std::endl;
     } else {
         if (head->nextItem == nullptr) {
             std::cout << "Sort is ready" << std::endl;
         } else {
+            Item *ptr;
+            Item *tmp = new Item;
             bool swapped = true;
             while (swapped) {
                 swapped = false;

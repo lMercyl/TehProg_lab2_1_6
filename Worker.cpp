@@ -6,6 +6,8 @@ Worker::Worker() {
     _middleName = "middle name not found";
     _position = "position not found";
     _year = "0";
+    std::cout << "Run constructor Worker" << std::endl;
+    std::cout << std::endl;
 }
 
 Worker::Worker(std::string firstName, std::string lastName, std::string middleName, std::string position,
@@ -15,6 +17,8 @@ Worker::Worker(std::string firstName, std::string lastName, std::string middleNa
     _middleName = middleName;
     _position = position;
     _year = year;
+    std::cout << "Run constructor(props) Worker" << std::endl;
+    std::cout << std::endl;
 }
 
 Worker::Worker(Worker &obj) {
@@ -23,6 +27,8 @@ Worker::Worker(Worker &obj) {
     _middleName = obj._middleName;
     _position = obj._position;
     _year = obj._year;
+    std::cout << "Run constructor-copy Worker" << std::endl;
+    std::cout << std::endl;
 }
 
 Worker::~Worker() {
@@ -31,6 +37,8 @@ Worker::~Worker() {
     _middleName = "";
     _position = "";
     _year = "";
+    std::cout << "Run destructor Worker" << std::endl;
+    std::cout << std::endl;
 }
 
 void Worker::setFirstName(std::string firstName) {
