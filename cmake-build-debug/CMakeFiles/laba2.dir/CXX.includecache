@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/mono/CLionProjects/laba2/Item.h
+Worker.h
+/Users/mono/CLionProjects/laba2/Worker.h
+
+/Users/mono/CLionProjects/laba2/Keeper.h
+Item.h
+/Users/mono/CLionProjects/laba2/Item.h
+
+/Users/mono/CLionProjects/laba2/Worker.h
+iostream
+-
+string
+-
+
+/Users/mono/CLionProjects/laba2/main.cpp
+iostream
+-
+Worker.h
+/Users/mono/CLionProjects/laba2/Worker.h
+Keeper.h
+/Users/mono/CLionProjects/laba2/Keeper.h
+
