@@ -49,7 +49,7 @@ void Keeper::pushObject(Worker *obj) {
 }
 
 void Keeper::popObject(int index) {
-    Item* buf = head;
+    Item* ptr = head;
     Item* prevPtr;
     if (_size == 0) {
         std::cout << "Is empty" << std::endl;
@@ -58,23 +58,23 @@ void Keeper::popObject(int index) {
     if (((index) >= _size) || (index < 0)) {
         std::cout << "Not found index" << std::endl;
     } else {
-        if (buf->nextItem == nullptr) {
+        if (ptr->nextItem == nullptr) {
             std::cout << "Delete last object and one in all"<< std::endl;
-            buf->data->~Worker();
+            ptr->data->~Worker();
             _size--;
             return;
         }
         if (index == 0) {
-            head = buf->nextItem;
-            buf->data->~Worker();
+            head = ptr->nextItem;
+            ptr->data->~Worker();
             _size--;
             return;
         }
         for (int i = 0; i < index - 1; i++) {
-            buf = buf->nextItem;
+            ptr = ptr->nextItem;
         }
-        prevPtr = buf->nextItem;
-        buf->nextItem = prevPtr->nextItem;
+        prevPtr = ptr->nextItem;
+        ptr->nextItem = prevPtr->nextItem;
         prevPtr->data->~Worker();
         _size--;
     }
@@ -123,16 +123,59 @@ void Keeper::sortByLastName() {
 void Keeper::getLastNameByExp(int value) {
     Item *ptr = head;
     bool found = false;
-    while (ptr->nextItem != nullptr) {
-        if (atoi(ptr->data->getYear().c_str()) > value) {
+    int time = 0;
+    if (head->nextItem == nullptr) {
+        time = 2021 - atoi(ptr->data->getYear().c_str());
+        if (time > value) {
             found = true;
             std::cout << "Worker: " << ptr->data->getLastName() << std::endl;
         }
-        ptr = ptr->nextItem;
+    } else {
+        while (ptr != nullptr) {
+            time = 2021 - atoi(ptr->data->getYear().c_str());
+            if (time > value) {
+                found = true;
+                std::cout << "Worker: " << ptr->data->getLastName() << std::endl;
+            }
+            ptr = ptr->nextItem;
+        }
     }
     if (!found) {
         std::cout << "There are no such workers" << std::endl;
     }
     std::cout << std::endl;
+}
+
+void Keeper::addObjectInPosition(Worker *obj, int index) {
+    Item *newItemObj = new Item;
+    Item* ptr = head;
+    Item* prevPtr;
+    if (_size == 0) {
+        std::cout << "Is empty" << std::endl;
+        return;
+    }
+    if (((index) >= _size) || (index < 0)) {
+        std::cout << "Not found index" << std::endl;
+    } else {
+        if (ptr->nextItem == nullptr) {
+            pushObject(obj);
+            return;
+        }
+        if (index == 0) {
+            newItemObj->data = obj;
+            newItemObj->nextItem = ptr;
+            head = newItemObj;
+            _size++;
+            return;
+        }
+        for (int i = 0; i < index - 1; i++) {
+            ptr = ptr->nextItem;
+        }
+        prevPtr = ptr->nextItem;
+        newItemObj->data = obj;
+        newItemObj->nextItem = prevPtr;
+        ptr->nextItem = newItemObj;
+        _size++;
+    }
 }
 

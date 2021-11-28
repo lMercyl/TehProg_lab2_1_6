@@ -11,6 +11,9 @@ private:
     std::string _middleName;
     std::string _position;
     std::string _year;
+protected:
+    bool numbersInStr(std::string str);
+    bool charInNumbers(std::string str);
 public:
     Worker();
     Worker(std::string firstName, std::string lastName, std::string middleName, std::string position, std::string year);
